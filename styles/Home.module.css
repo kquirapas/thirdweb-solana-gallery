@@ -32,3 +32,8 @@
 .lightPurple {
   color: #e011a7;
 }
+
+.thumbnail {
+  max-width: 150px;
+  width: 100%;
+}
