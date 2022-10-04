@@ -18,8 +18,6 @@ const Home: NextPage = () => {
   const { data: metadata } = useProgramMetadata(program);
   const { data: nfts } = useNFTs(program);
 
-  console.log(nfts);
-
   const { publicKey } = useWallet();
 
   return (
