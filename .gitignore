@@ -5,6 +5,7 @@ Session.vim
 notes
 .editorconfig
 *keypair.json
+.env.local
 
 # dependencies
 /node_modules
