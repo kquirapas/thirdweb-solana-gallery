@@ -4,20 +4,22 @@ import styles from "../styles/Home.module.css";
 import { NFTMetadata } from '@thirdweb-dev/sdk';
 
 type Props = {
-  metadata: NFTMetadata;
+  data: NFTMetadata;
 };
 
-const Card: FC<Props> = ({ metadata }) => {
+// revealed address character count
+const REVEALED_COUNT = 4;
+
+const Card: FC<Props> = ({ data }) => {
+  const metadata = data.metadata as NFTMetadata;
+  const owner: string = data.owner as string;
+
   return (
     <div className={styles.card}>
-      <img className={styles.thumbnail} src={metadata.image} />
+      <img className={styles.thumbnail} src={String(metadata.image)} />
       <h3>{metadata.name}</h3>
-      {metadata.attributes.map((e, idx: number) =>
-          <div key={idx} className={styles.trait}>
-            <p className={`${styles.lightPurple} ${styles.type}`}>{e.trait_type.toUpperCase()}</p>
-            <p className={styles.value}>{e.value}</p>
-          </div>
-      )}
+      <p>Owned by</p>
+      <p>{owner.substring(0, REVEALED_COUNT) + "..." + owner.substring(owner.length - REVEALED_COUNT)}</p>
     </div>
   )
 };

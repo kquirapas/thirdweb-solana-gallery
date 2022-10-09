@@ -8,13 +8,14 @@ import { NFTMetadata } from '@thirdweb-dev/sdk';
 
 import Card from '../components/Card';
 import MintButton from '../components/MintButton';
-import Randomizer from '../components/Randomizer';
 
 // Default styles that can be overridden by your app
 require("@solana/wallet-adapter-react-ui/styles.css");
 
+const PROGRAM_ADDRESS = process.env.NEXT_PUBLIC_NFT_COLLECTION_PROGRAM;
+
 const Home: NextPage = () => {
-  const { data: program } = useProgram(process.env.NEXT_PUBLIC_NFT_COLLECTION_PROGRAM, "nft-collection");
+  const { data: program } = useProgram(PROGRAM_ADDRESS, "nft-collection");
   const { data: metadata } = useProgramMetadata(program);
   const { data: nfts } = useNFTs(program);
 
@@ -25,9 +26,7 @@ const Home: NextPage = () => {
       <div className={styles.container}>
         <h1 className={styles.h1}>{metadata?.name}</h1>
         <div className={styles.iconContainer}>
-          {nfts &&
-            <Randomizer imagePaths={nfts.map(e=>e.image) as string[]} />
-          }
+          <img className={styles.thumbnail} src={String(metadata?.image)} alt={String(metadata?.name)} />
         </div>
         <p className={styles.explain}>Would be nice to have collection description here</p>
 
@@ -41,7 +40,7 @@ const Home: NextPage = () => {
         ) : (
           <main className={styles.gallery}>
             {nfts.map((nft, idx) => (
-              <Card key={idx} metadata={nft as NFTMetadata} />
+              <Card key={idx} data={nft as NFTMetadata} />
             ))}
           </main>
         )}
