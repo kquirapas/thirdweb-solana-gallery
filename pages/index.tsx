@@ -28,7 +28,7 @@ const Home: NextPage = () => {
         <div className={styles.iconContainer}>
           <img className={styles.thumbnail} src={String(metadata?.image)} alt={String(metadata?.name)} />
         </div>
-        <p className={styles.explain}>Would be nice to have collection description here</p>
+        <p className={styles.explain}>{metadata?.description}</p>
 
         <div className={styles.buttons}>
           <WalletMultiButton />

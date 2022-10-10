@@ -1,3 +1,3 @@
-## Solana Starter Kit
+# Solana Collection Gallery Template
 
-More details to come!
+Using [thirdweb's dashboard](https://thirdweb.com/dashboard) you can deploy an NFT collection and an NFT gallery without doing any code.
